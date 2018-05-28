@@ -14,46 +14,37 @@
 
 /**
  * 思路：对给定的数字第一次对10取余，之后每一次都用整除10的结果再对10取余
- * 利用数组存储翻转后的每一位数字，之后再用变量对数组的每一位数字乘以位数相加返回
+ * 就可以拿到反转后的每一位数字，之后设置目标返回值先为0，再用目标值*10+每一位数字
+ * 循环结束，目标返回值就会变成需要返回的数值，之后再对反转后的数字做溢出判断
  */
-function reverse(x) {
-    
-    var result = getArr(cycleNum(x));
+function reverse(x) {  
+    let result = cycleNum(x);
     
     if(result <= Math.pow(2, 31) - 1 && result >= -1 * Math.pow(2, 31)) {
         if(x > 0) {
-            console.log(result);
+            return result;
         }else if(x < 0) {
             result *= -1;
-            console.log(result);
+            return result;
         }
     } else {
         return 0;
     }
-    
+
     return result;
 }
 
-// 循环处理数字，把翻转后的每一位数字存进数组
+// 循环处理数字，
 function cycleNum(num) {
-    const arr = []; // 用于存储翻转后的每一位数字
-    let y = Math.abs(num);  // 处理负数
+    let y = Math.abs(num); // 处理负数
+    var temp = 0; // 返回目标数值
 
     do {
-        arr.push(y % 10);
+        temp = temp * 10 + (y % 10);
         y = Math.floor(y / 10);
     } while(y > 0);
-    return arr;
-}
 
-// 取数组中的数字，利用临时变量将其相加得最终结果
-function getArr(array) {
-    let temp = 0; // 用于存储翻转后的数字
-    
-    for(var i = 0,j = array.length - 1; i < array.length, j >= 0; i++, j--) {
-        temp += array[i] * Math.pow(10, j);
-    }
     return temp;
 }
 
-reverse(1534236469);
+reverse(321);
