@@ -34,7 +34,7 @@ function reverse(x) {
     return result;
 }
 
-// 循环处理数字，
+// 循环处理数字
 function cycleNum(num) {
     let y = Math.abs(num); // 处理负数
     var temp = 0; // 返回目标数值
@@ -47,4 +47,4 @@ function cycleNum(num) {
     return temp;
 }
 
-reverse(321);
+reverse(56732942305);
